@@ -170,4 +170,4 @@
 ```
 
 ### ERD
-![ERD_img1.png](../../Spring/schedul/ERD_img1.png)# schedule
+![ERD_img1.png](ERD_img1.png)# schedule
