@@ -10,15 +10,21 @@ import lombok.Getter;
 
 public class Schedule {
     private Long schedule_id ;
-    private String title;
-    private String contents;
     private String password;
     private String name;
+    private String title;
+    private String contents;
     private String createdDate;
     private String updatedDate;
 
-    public void update(scheduleRequestDto dto) {
+    public void updateName(scheduleRequestDto dto) {
+        this.contents = dto.getContents();
+    }
+
+    public void updateTitle(scheduleRequestDto dto) {
         this.title = dto.getTitle();
-        this.name = dto.getName();
+    }
+    public void updateContents(scheduleRequestDto dto) {
+        this.contents = dto.getContents();
     }
 }

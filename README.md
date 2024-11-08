@@ -74,13 +74,17 @@
       "schedule_id": "아이디",
       "name": "작성자",
       "title": "제목",
-      "createdDate": "YYYY-MM-DD HH:mm:ss"
+      "createdDate": "YYYY-MM-DD HH:mm:ss",
+      "updatedDate": "YYYY-MM-DD HH:mm:ss"
+      
   },
   {
       "id": "아이디",
       "name": "작성자",
       "title": "제목",
-      "createdDate": "YYYY-MM-DD HH:mm:ss"
+      "createdDate": "YYYY-MM-DD HH:mm:ss",
+      "updatedDate": "YYYY-MM-DD HH:mm:ss"
+      
   }
 ]
 ```
@@ -91,6 +95,7 @@
   | title       | String | 일정 제목   |
   | name        | String | 작성자명    |
   | createdDate | String | 생성 일자   |
+  | updatedDate | String | 수정 일시   |
 
 
 #### 3. 선택 일정 조회
@@ -130,6 +135,7 @@
   |----------|--------|--------|----|
   | name     | String | 작성자명   | X  |      
   | password | String | 비밀번호   | O  |      
+  | title    | String | 수정할 제목 | X  |      
   | contents | String | 수정할 내용 | X  |      
 
 
@@ -140,14 +146,18 @@
 {
     "name": "작성자",
     "title": "제목",
+    "contents": "내용",
+    "createdDate": "YYYY-MM-DD HH:mm:ss",
     "updatedDate": "YYYY-MM-DD HH:mm:ss"
 }
 ```
 
   | 이름          | 타입     | 설명    |
   |-------------|--------|-------|
-  | name        | String | 작성자   |
+  | name        | String | 작성자명  |
   | title       | String | 일정 제목 |
+  | contents    | String | 일정 내용 |
+  | createdDate | String | 생성 일시 |
   | updatedDate | String | 수정 일시 |
 
 #### 5. 선택 일정 삭제
@@ -164,9 +174,7 @@
   + Body :
 
 ```
-{
-    "message": "삭제되었습니다"
-}
+schedule_id번 일정이 삭제되었습니다
 ```
 
 ### ERD
