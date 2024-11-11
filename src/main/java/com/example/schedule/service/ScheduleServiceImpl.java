@@ -26,16 +26,16 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public ScheduleResponseDto saveSchedule(ScheduleRequestDto dto) {
 
-        //요청 받은 데이터로 객체 생서
+        //요청 받은 데이터로 객체 생성
         Schedule schedule = new Schedule(dto.getPassword(), dto.getName(), dto.getTitle(), dto.getContents());
 
         return scheduleRepository.saveSchedule(schedule);
     }
 
     @Override
-    public List<ScheduleResponseDto> findScheduleAll(ScheduleRequestDto dto) {
+    public List<ScheduleResponseDto> findScheduleAll(String name, String creadteDate) {
 
-        return scheduleRepository.findScheduleAll();
+        return scheduleRepository.findScheduleAll(name, creadteDate);
     }
 
     @Override
@@ -50,11 +50,14 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public ScheduleResponseDto updateSchedule(Long scheduleId, String password, String name, String title, String contents) {
 
+        if (title == null || name == null || contents == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
 
-        int updateSchedule = scheduleRepository.updateSchedule(scheduleId, name, title, contents);
+        int updateSchedule = scheduleRepository.updateSchedule(scheduleId, password,name, title, contents);
 
         if (updateSchedule == 0) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "일정 " + scheduleId +"는 찾을 수 없습니다");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "일정 " + scheduleId +"를 수정할 수 없습니다");
         }
 //        else if (!Objects.equals(schedule.getPassword(), password)) {
 //            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "비밀번호가 일치하지 않습니다");
@@ -70,10 +73,10 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public void deleteSchedule(Long scheduleId, String password) {
 
-        int deleteSchedule = scheduleRepository.deleteSchedule(scheduleId);
+        int deleteSchedule = scheduleRepository.deleteSchedule(scheduleId, password);
 
-        if (deleteSchedule ==0) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "일정 " + scheduleId +"는 찾을 수 없습니다");
+        if (deleteSchedule ==  0) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "일정 " + scheduleId +"를 삭제할 수 없습니다");
         }
 //        else if (!Objects.equals(schedule.getPassword(), password)) {
 //            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "비밀번호가 일치하지 않습니다");

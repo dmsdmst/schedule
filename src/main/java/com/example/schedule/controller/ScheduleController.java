@@ -23,9 +23,6 @@ public class ScheduleController {
     @PostMapping
     public ResponseEntity<ScheduleResponseDto> createSchedule(@RequestBody ScheduleRequestDto dto) {
 
-        // todo : 타임스탬프 구현하기 !!!
-
-        // todo : 결과값에서 비밀번호 제외
         return new ResponseEntity<>(scheduleService.saveSchedule(dto), HttpStatus.CREATED);
     }
 
@@ -33,11 +30,10 @@ public class ScheduleController {
     // 전체 일정 조회
 
     @GetMapping
-    public ResponseEntity<List<ScheduleResponseDto>> findScheduleAll(
-            @RequestBody ScheduleRequestDto dto
-    ) {
+    public ResponseEntity<List<ScheduleResponseDto>> findScheduleAll(@RequestParam(value = "name", required = false) String name,
+                                                                     @RequestParam(value = "createdDate", required = false) String createdDate) {
 
-        return new ResponseEntity<>(scheduleService.findScheduleAll(dto), HttpStatus.OK);
+        return new ResponseEntity<>(scheduleService.findScheduleAll(name, createdDate), HttpStatus.OK);
     }
 
 
@@ -50,12 +46,11 @@ public class ScheduleController {
 
 
     // 선택 일정 수정
-    @PutMapping("/{scheduleId}")
+    @PatchMapping("/{scheduleId}")
     public ResponseEntity<ScheduleResponseDto> updateSchedule(
             @PathVariable Long scheduleId,
             @RequestBody ScheduleRequestDto dto
     ) {
-        // todo : 오류 발생
         return new ResponseEntity<>(scheduleService.updateSchedule(scheduleId, dto.getPassword(), dto.getName(), dto.getTitle(), dto.getContents()), HttpStatus.OK);
 
     }

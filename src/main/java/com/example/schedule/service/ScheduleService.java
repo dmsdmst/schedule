@@ -9,7 +9,7 @@ public interface ScheduleService {
 
     ScheduleResponseDto saveSchedule(ScheduleRequestDto dto);
 
-    List<ScheduleResponseDto> findScheduleAll(ScheduleRequestDto dto);
+    List<ScheduleResponseDto> findScheduleAll(String name, String creadtedDate);
 
     ScheduleResponseDto findScheduleById(Long scheduleId);
 

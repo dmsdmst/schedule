@@ -10,13 +10,11 @@ public interface ScheduleRepository {
 
     ScheduleResponseDto saveSchedule(Schedule schedule);
 
-    List<ScheduleResponseDto> findScheduleAll();
+    List<ScheduleResponseDto> findScheduleAll(String name, String createdDate);
 
-    Optional<Schedule> findScheduleById(Long scheduleId);
+    int deleteSchedule(Long scheduleId, String password);
 
-    int deleteSchedule(Long scheduleId);
-
-    int updateSchedule(Long scheduleId, String name, String title, String contents);
+    int  updateSchedule(Long scheduleId, String password, String name, String title, String contents);
 
     Schedule findScheduleByIdOrElseThrow(Long scheduleId);
 }
