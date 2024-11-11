@@ -1,30 +1,37 @@
 package com.example.schedule.entity;
 
-import com.example.schedule.dto.scheduleRequestDto;
-import com.example.schedule.dto.scheduleResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @AllArgsConstructor
 
 public class Schedule {
+
     private Long schedule_id ;
     private String password;
     private String name;
     private String title;
     private String contents;
-    private String createdDate;
-    private String updatedDate;
 
-    public void updateName(scheduleRequestDto dto) {
-        this.contents = dto.getContents();
+
+    public Schedule(String password, String name, String title, String contents) {
+        this.password = password;
+        this.name = name;
+        this.title = title;
+        this.contents = contents;
+
+    };
+
+    public void updateName(String name) {
+        this.name = name;
     }
 
-    public void updateTitle(scheduleRequestDto dto) {
-        this.title = dto.getTitle();
+    public void updateTitle(String title) {
+        this.title = title;
     }
-    public void updateContents(scheduleRequestDto dto) {
-        this.contents = dto.getContents();
+    public void updateContents(String contents) {
+        this.contents = contents;
     }
 }
